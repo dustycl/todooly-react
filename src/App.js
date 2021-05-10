@@ -10,6 +10,16 @@ const Activity = (props) => {
 }
 
 class App extends Component {
+  state = {
+    activityList: [],
+  }
+
+  handleClick(event) {
+    this.setState({
+      activityList: activityList.concat(event.target.value),
+    });
+  }
+
   render() {
     return (
       <div class="small-container">
@@ -17,7 +27,9 @@ class App extends Component {
           <input
            type="text"
            ></input>
-          <button className="full-button">Add activity</button>
+          <button
+           className="full-button"
+           onClick={handleClick}>Add activity</button>
         </form>
         <ul>
           <li>Activity name <button className="muted-button">Delete</button></li>
