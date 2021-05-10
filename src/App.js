@@ -4,10 +4,12 @@ class App extends Component {
   render() {
     return (
       <div class="container">
-        <input
-        type="input"
-        ></input>
-        <button>Add activity</button>
+        <form className="flex">
+          <input
+           type="text"
+           ></input>
+          <button className="full-button">Add activity</button>
+        </form>
       </div>
     )
   }
