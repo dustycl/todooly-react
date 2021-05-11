@@ -1,39 +1,48 @@
 import React, {Component} from 'react'
-
-const Activity = (props) => {
-  <li>
-    {props.activityName}
-    <button
-     className="muted-button"
-    >Delete</button>
-  </li>
-}
+import List from './List.js'
 
 class App extends Component {
-  state = {
-    activityList: [],
+  constructor(props) {
+    super(props);
+  
+    this.state = {
+      text: "",
+      activityList: [],
+    }
   }
 
-  handleClick(event) {
+  handleChange = (event) => {
     this.setState({
-      activityList: activityList.concat(event.target.value),
+      text: event.target.value,
+    });
+  }
+
+  handleSubmit = () => {
+    this.setState({
+      activityList: this.state.activityList.concat([this.state.text]),
+    });
+
+    this.setState({
+      text: "",
     });
   }
 
   render() {
     return (
-      <div class="small-container">
+      <div className="small-container">
         <form className="flex">
           <input
            type="text"
+           value={this.state.text}
+           onChange={this.handleChange}
            ></input>
           <button
            className="full-button"
-           onClick={handleClick}>Add activity</button>
+           type="button"
+           onClick={this.handleSubmit}
+           >Add activity</button>
         </form>
-        <ul>
-          <li>Activity name <button className="muted-button">Delete</button></li>
-        </ul>
+        <List activityList={this.state.activityList} />
       </div>
     )
   }
