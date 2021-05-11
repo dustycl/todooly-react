@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 
 const Activities = (props) => {
     const activities = props.activityList.map((item, index) => {
