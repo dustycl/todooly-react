@@ -4,9 +4,10 @@ const Activities = (props) => {
     const activities = props.activityList.map((item, index) => {
         return (
             <li key={index} className="activity">
+                <input type="checkbox" />
                 <div>{item}</div>
                 <div>
-                    <button className="muted-button">Delete</button>
+                    <button className="muted-button activity-button-delete">Delete</button>
                 </div>
             </li>
         )
