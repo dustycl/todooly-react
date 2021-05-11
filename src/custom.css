@@ -5,7 +5,11 @@
 }
 .activity {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     list-style: none;
-    margin: 0;
+    background: #F5F9FF;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    padding: 1rem;
 }

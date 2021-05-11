@@ -5,7 +5,9 @@ const Activities = (props) => {
         return (
             <li key={index} className="activity">
                 <div>{item}</div>
-                <button className="muted-button">Delete</button>
+                <div>
+                    <button className="muted-button">Delete</button>
+                </div>
             </li>
         )
     })
