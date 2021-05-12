@@ -6,7 +6,7 @@ const Activity = (props) => {
          className="activity"
          onMouseOver={props.handleMouseOver}>
             <input type="checkbox" />
-            <div>{item}</div>
+            <div>{props.item}</div>
             <div>
                 <button className="muted-button activity-button-delete">Delete</button>
             </div>
@@ -18,7 +18,7 @@ const Activities = (props) => {
     const activities = props.activityList.map((item, index) => {
         return (
             <li key={index}>
-                
+                <Activity item={item} />
             </li>
         )
     })
