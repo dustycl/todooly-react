@@ -1,16 +1,24 @@
 import React from 'react'
 
+const Activity = (props) => {
+    return (
+        <div
+         className="activity"
+         onMouseOver={props.handleMouseOver}>
+            <input type="checkbox" />
+            <div>{item}</div>
+            <div>
+                <button className="muted-button activity-button-delete">Delete</button>
+            </div>
+        </div>
+    )
+}
+
 const Activities = (props) => {
     const activities = props.activityList.map((item, index) => {
         return (
             <li key={index}>
-                <div className="activity">
-                    <input type="checkbox" />
-                    <div>{item}</div>
-                    <div>
-                        <button className="muted-button activity-button-delete">Delete</button>
-                    </div>
-                </div>
+                
             </li>
         )
     })
@@ -21,10 +29,10 @@ const Activities = (props) => {
   }
 
 const List = (props) => {
-    const {activityList} = props;
+    const {activityList, handleMouseOver} = props;
 
     return (
-        <Activities activityList={activityList}/>
+        <Activities activityList={activityList} onMouseOver={handleMouseOver} />
     )
 }
 

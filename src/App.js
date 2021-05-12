@@ -27,6 +27,11 @@ class App extends Component {
     });
   }
 
+  handleMouseOver = (event) => {
+    console.log("Hovered over activity!");
+    event.target.className="activity-hover";
+  }
+
   render() {
     return (
       <div className="small-container">
@@ -42,7 +47,7 @@ class App extends Component {
            onClick={this.handleSubmit}
            >Add activity</button>
         </form>
-        <List activityList={this.state.activityList} />
+        <List activityList={this.state.activityList} onMouseOver={this.handleMouseOver} />
       </div>
     )
   }

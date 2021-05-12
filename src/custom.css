@@ -15,6 +15,10 @@
     padding: 1rem;
 }
 
+.activity-hover {
+    border: 1px solid #2D7FFB;
+}
+
 .activity-button-delete {
     margin: 0;
 }
