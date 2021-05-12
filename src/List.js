@@ -1,17 +1,34 @@
-import React from 'react'
+import React, {Component} from 'react'
 
-const Activity = (props) => {
-    return (
-        <div
-         className="activity"
-         onMouseOver={props.handleMouseOver}>
-            <input type="checkbox" />
-            <div>{props.item}</div>
-            <div>
-                <button className="muted-button activity-button-delete">Delete</button>
+
+
+class Activity extends Component {
+    constructor(props) {
+        super(props)
+        state = {
+            isMouseOver: false,
+            class: "activity"
+        }
+    }
+
+    handleMouseOver = () => {
+        this.setState({isMouseOver: !this.state.isMouseOver});
+        alert(this.state.isMouseOver);
+    }
+
+    render() {
+        return (
+            <div
+             className={this.state.class}
+             onMouseOver={props.handleMouseOver}>
+                <input type="checkbox" />
+                <div>{props.item}</div>
+                <div>
+                    <button className="muted-button activity-button-delete">Delete</button>
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 const ActivityHover = (props) => {
@@ -32,7 +49,10 @@ const Activities = (props) => {
     const activities = props.activityList.map((item, index) => {
         return (
             <li key={index}>
-                <Activity item={item} />
+                {props.isMouseOver
+                    ? <ActivityHover item={item} onMouseOver={props.handleMouseOver} />
+                    : <Activity item={item} onMouseOver={props.handleMouseOver} />
+                }
             </li>
         )
     })
@@ -43,10 +63,13 @@ const Activities = (props) => {
   }
 
 const List = (props) => {
-    const {activityList, handleMouseOver} = props;
+    const {activityList, handleMouseOver, isMouseOver} = props;
 
     return (
-        <Activities activityList={activityList} onMouseOver={handleMouseOver} />
+        <Activities
+         activityList={activityList}
+         onMouseOver={handleMouseOver}
+         isMouseOver={isMouseOver} />
     )
 }
 
