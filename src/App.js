@@ -30,7 +30,8 @@ class App extends Component {
   render() {
     return (
       <div className="small-container">
-        <form className="flex">
+        <h1>Todooly</h1>
+        <form>
           <input
            type="text"
            value={this.state.text}
