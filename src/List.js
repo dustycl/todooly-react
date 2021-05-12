@@ -5,24 +5,28 @@ import React, {Component} from 'react'
 class Activity extends Component {
     constructor(props) {
         super(props)
-        state = {
-            isMouseOver: false,
+        this.state = {
+            item: props.item,
             class: "activity"
         }
     }
 
-    handleMouseOver = () => {
-        this.setState({isMouseOver: !this.state.isMouseOver});
-        alert(this.state.isMouseOver);
+    handleMouseEnter = () => {
+        this.setState({class: this.state.class.concat(" activity-hover")});
+    }
+
+    handleMouseLeave = () => {
+        this.setState({class: "activity"})
     }
 
     render() {
         return (
             <div
              className={this.state.class}
-             onMouseOver={this.handleMouseOver}>
+             onMouseEnter={this.handleMouseEnter}
+             onMouseLeave={this.handleMouseLeave} >
                 <input type="checkbox" />
-                <div>{props.item}</div>
+                <div>{this.item}</div>
                 <div>
                     <button className="muted-button activity-button-delete">Delete</button>
                 </div>
@@ -46,7 +50,7 @@ const Activities = (props) => {
   }
 
 const List = (props) => {
-    const {activityList, handleMouseOver, isMouseOver} = props;
+    const {activityList} = props;
 
     return (
         <Activities activityList={activityList} />
