@@ -6,8 +6,7 @@ class Activity extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            item: props.item,
-            class: "activity"
+            class: "activity",
         }
     }
 
@@ -26,7 +25,7 @@ class Activity extends Component {
              onMouseEnter={this.handleMouseEnter}
              onMouseLeave={this.handleMouseLeave} >
                 <input type="checkbox" />
-                <div>{this.item}</div>
+                <div>{this.props.item}</div>
                 <div>
                     <button className="muted-button activity-button-delete">Delete</button>
                 </div>
