@@ -14,6 +14,20 @@ const Activity = (props) => {
     )
 }
 
+const ActivityHover = (props) => {
+    return (
+        <div
+         className="activity activity-hover"
+         onMouseOver={props.handleMouseOver}>
+            <input type="checkbox" />
+            <div>{props.item}</div>
+            <div>
+                <button className="muted-button activity-button-delete">Delete</button>
+            </div>
+        </div>
+    )
+}
+
 const Activities = (props) => {
     const activities = props.activityList.map((item, index) => {
         return (
