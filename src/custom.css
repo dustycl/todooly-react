@@ -1,13 +1,14 @@
 .activity-list {
     width: 320px;
+    list-style: none;
     margin: 0 auto;
     padding: 0;
 }
+
 .activity {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    list-style: none;
     background: #F5F9FF;
     border-radius: 6px;
     margin-bottom: 1rem;

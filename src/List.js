@@ -3,11 +3,13 @@ import React from 'react'
 const Activities = (props) => {
     const activities = props.activityList.map((item, index) => {
         return (
-            <li key={index} className="activity">
-                <input type="checkbox" />
-                <div>{item}</div>
-                <div>
-                    <button className="muted-button activity-button-delete">Delete</button>
+            <li key={index}>
+                <div className="activity">
+                    <input type="checkbox" />
+                    <div>{item}</div>
+                    <div>
+                        <button className="muted-button activity-button-delete">Delete</button>
+                    </div>
                 </div>
             </li>
         )
