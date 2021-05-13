@@ -5,7 +5,7 @@ import React from 'react'
 const Activity =(props) => {
     return (
         <div className="activity">
-            <input type="checkbox" />
+            <input type="checkbox" onChange={()=>props.completeActivity(props.id)} />
             <div>{props.item}</div>
             <div>
                 <button
@@ -20,7 +20,11 @@ const Activities = (props) => {
     const activities = props.activityList.map((item, index) => {
         return (
             <li key={index}>
-                <Activity id={index} item={item} removeActivity={props.removeActivity} />
+                <Activity
+                 id={index}
+                 item={item}
+                 removeActivity={props.removeActivity}
+                 completeActivity={props.completeActivity} />
             </li>
         )
     })
@@ -31,10 +35,13 @@ const Activities = (props) => {
   }
 
 const List = (props) => {
-    const {activityList, removeActivity} = props;
+    const {activityList, removeActivity, completeActivity} = props;
 
     return (
-        <Activities activityList={activityList} removeActivity={removeActivity} />
+        <Activities
+         activityList={activityList}
+         removeActivity={removeActivity}
+         completeActivity={completeActivity} />
     )
 }
 

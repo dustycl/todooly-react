@@ -8,6 +8,7 @@ class App extends Component {
     this.state = {
       text: "",
       activityList: [],
+      completedActivities: [],
     }
   }
 
@@ -27,12 +28,20 @@ class App extends Component {
     });
   }
 
-  removeActivity = (index, event) => {
+  removeActivity = (index) => {
     this.setState({
       activityList: this.state.activityList.filter((activity, i) => {
         return i !== index;
-    })})
+      })
+    });
+  }
 
+  completeActivity = (index) => {
+    this.setState({
+      completedActivities: this.state.completedActivities.concat(
+        this.state.activityList[index]
+      )
+    });
   }
 
   render() {
@@ -53,7 +62,8 @@ class App extends Component {
         </form>
         <List
          activityList={this.state.activityList}
-         removeActivity={this.removeActivity} />
+         removeActivity={this.removeActivity} 
+         completeActivity={this.completeActivity} />
       </div>
     )
   }
