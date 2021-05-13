@@ -1,31 +1,20 @@
 import React, {Component} from 'react'
 import List from './List.js'
+import Form from './Form.js'
 
 class App extends Component {
   constructor(props) {
     super(props);
   
     this.state = {
-      text: "",
       activityList: [],
       completedActivities: [],
     }
   }
 
-  handleChange = (event) => {
+  handleSubmitForm = (activity) => {
     this.setState({
-      text: event.target.value,
-    });
-  }
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-    this.setState({
-      activityList: this.state.activityList.concat([this.state.text]),
-    });
-
-    this.setState({
-      text: "",
+      activityList: this.state.activityList.concat([activity]),
     });
   }
 
@@ -59,18 +48,7 @@ class App extends Component {
     return (
       <div className="small-container">
         <h1>Todooly</h1>
-        <form onSubmit={this.handleSubmit}>
-          <input
-           type="text"
-           value={this.state.text}
-           onChange={this.handleChange}
-           ></input>
-          <button
-           className="full-button"
-           type="button"
-           onClick={this.handleSubmit}
-           >Add activity</button>
-        </form>
+        <Form handleSubmitForm={this.handleSubmitForm} />
         <List
          activityList={this.state.activityList}
          removeActivity={this.removeActivity} 
