@@ -36,12 +36,22 @@ class App extends Component {
     });
   }
 
-  completeActivity = (index) => {
-    this.setState({
-      completedActivities: this.state.completedActivities.concat(
-        this.state.activityList[index]
-      )
-    });
+  completeActivity = (index, event) => {
+    if (event.target.checked) {
+      this.setState({
+        completedActivities: this.state.completedActivities.concat(
+          this.state.activityList[index]
+        )
+      });
+    }
+    else {
+      this.setState({
+        completedActivities: this.state.completedActivities.filter((activity, i) => {
+            return activity !== event.target.name;
+          }
+        )
+      })
+    }
   }
 
   render() {

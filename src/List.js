@@ -5,7 +5,10 @@ import React from 'react'
 const Activity =(props) => {
     return (
         <div className="activity">
-            <input type="checkbox" onChange={()=>props.completeActivity(props.id)} />
+            <input
+             type="checkbox"
+             name={props.item}
+             onChange={(event)=>props.completeActivity(props.id, event)} />
             <div>{props.item}</div>
             <div>
                 <button
