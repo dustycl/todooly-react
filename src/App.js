@@ -13,9 +13,11 @@ class App extends Component {
   }
 
   handleSubmitForm = (activity) => {
-    this.setState({
-      activityList: this.state.activityList.concat([activity]),
-    });
+    if (!this.state.activityList.includes(activity)) {
+      this.setState({
+        activityList: this.state.activityList.concat([activity]),
+      });
+    }
   }
 
   removeActivity = (index) => {
