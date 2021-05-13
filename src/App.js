@@ -18,7 +18,8 @@ class App extends Component {
     });
   }
 
-  handleSubmit = () => {
+  handleSubmit = (event) => {
+    event.preventDefault();
     this.setState({
       activityList: this.state.activityList.concat([this.state.text]),
     });
@@ -58,7 +59,7 @@ class App extends Component {
     return (
       <div className="small-container">
         <h1>Todooly</h1>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <input
            type="text"
            value={this.state.text}
