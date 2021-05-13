@@ -8,7 +8,9 @@ const Activity =(props) => {
             <input type="checkbox" />
             <div>{props.item}</div>
             <div>
-                <button className="muted-button activity-button-delete">Delete</button>
+                <button
+                 className="muted-button activity-button-delete"
+                 onClick={()=>props.removeActivity(props.id)}>Delete</button>
             </div>
         </div>
     )
@@ -18,7 +20,7 @@ const Activities = (props) => {
     const activities = props.activityList.map((item, index) => {
         return (
             <li key={index}>
-                <Activity item={item} />
+                <Activity id={index} item={item} removeActivity={props.removeActivity} />
             </li>
         )
     })
@@ -29,10 +31,10 @@ const Activities = (props) => {
   }
 
 const List = (props) => {
-    const {activityList} = props;
+    const {activityList, removeActivity} = props;
 
     return (
-        <Activities activityList={activityList} />
+        <Activities activityList={activityList} removeActivity={removeActivity} />
     )
 }
 

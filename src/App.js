@@ -27,6 +27,14 @@ class App extends Component {
     });
   }
 
+  removeActivity = (index, event) => {
+    this.setState({
+      activityList: this.state.activityList.filter((activity, i) => {
+        return i !== index;
+    })})
+
+  }
+
   render() {
     return (
       <div className="small-container">
@@ -45,8 +53,7 @@ class App extends Component {
         </form>
         <List
          activityList={this.state.activityList}
-         onMouseOver={this.handleMouseOver}
-         isMouseOver={this.state.isMouseOver} />
+         removeActivity={this.removeActivity} />
       </div>
     )
   }
