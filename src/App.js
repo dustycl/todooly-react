@@ -54,7 +54,8 @@ class App extends Component {
         <List
          activityList={this.state.activityList}
          removeActivity={this.removeActivity} 
-         completeActivity={this.completeActivity} />
+         completeActivity={this.completeActivity}
+         completedActivities={this.state.completedActivities} />
       </div>
     )
   }
