@@ -35,6 +35,7 @@ class App extends Component {
           this.state.activityList[index]
         )
       });
+      this.removeActivity(index);
     }
     else {
       this.setState({
