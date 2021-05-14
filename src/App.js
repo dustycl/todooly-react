@@ -44,6 +44,7 @@ class App extends Component {
           }
         )
       })
+      this.addActivity(event.target.name);
     }
   }
 
