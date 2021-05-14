@@ -12,7 +12,7 @@ class App extends Component {
     }
   }
 
-  handleSubmitForm = (activity) => {
+  addActivity = (activity) => {
     if (!this.state.activityList.includes(activity)) {
       this.setState({
         activityList: this.state.activityList.concat([activity]),
@@ -51,7 +51,7 @@ class App extends Component {
     return (
       <div className="small-container">
         <h1>Todooly</h1>
-        <Form handleSubmitForm={this.handleSubmitForm} />
+        <Form handleSubmitForm={this.addActivity} />
         <List
          activityList={this.state.activityList}
          removeActivity={this.removeActivity} 
