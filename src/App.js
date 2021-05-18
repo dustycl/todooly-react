@@ -12,12 +12,16 @@ class App extends Component {
     }
   }
 
+  createActivity = (activity) => {
+    return {name: activity, creationDate: Date()}
+  }
+
   addActivity = (activity) => {
-    if (!this.state.activityList.includes(activity)) {
+    //if (!this.state.activityList.includes(activity)) {
       this.setState({
-        activityList: this.state.activityList.concat([activity]),
+        activityList: this.state.activityList.concat([this.createActivity(activity)]),
       });
-    }
+   // }
   }
 
   removeActivity = (index) => {

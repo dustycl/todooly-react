@@ -23,10 +23,10 @@ const Activity =(props) => {
 const Activities = (props) => {
     const activities = props.activityList.map((item, index) => {
         return (
-            <li key={item}>
+            <li key={item["name"]}>
                 <Activity
                  id={index}
-                 item={item}
+                 item={item["name"]}
                  removeActivity={props.removeActivity}
                  completeActivity={props.completeActivity}
                  checked="" />
@@ -42,10 +42,10 @@ const Activities = (props) => {
   const CompletedActivities = (props) => {
       const activities = props.completedActivities.map((item, index) => {
           return (
-              <li key={item}>
+              <li key={item["name"]}>
                   <Activity
                     id={index}
-                    item={item}
+                    item={item["name"]}
                     removeActivity={props.removeActivity}
                     completeActivity={props.completeActivity}
                     checked="checked" />
