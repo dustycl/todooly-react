@@ -12,25 +12,21 @@ class App extends Component {
     }
   }
 
-  createActivity = (activity) => {
-    return {name: activity, creationDate: Date()}
-  }
-
   addActivity = (activity) => {
     //if (!this.state.activityList.includes(activity)) {
       this.setState({
-        activityList: this.state.activityList.concat([this.createActivity(activity)]),
+        activityList: this.state.activityList.concat([activity]),
       });
    // }
   }
 
-  removeActivity = (index) => {
+  removeActivity = (list, index) => {
     /* TODO
       Make remove activity work with both checked and unchecked activities
       */
-     
+
     this.setState({
-      activityList: this.state.activityList.filter((activity, i) => {
+      list: list.filter((activity, i) => {
         return i !== index;
       })
     });
@@ -43,7 +39,7 @@ class App extends Component {
           this.state.activityList[index]
         )
       });
-      this.removeActivity(index);
+      this.removeActivity(this.state.activityList, index);
     }
     else {
       this.setState({

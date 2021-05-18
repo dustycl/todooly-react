@@ -8,6 +8,10 @@ class Form extends Component {
         }
     }
 
+    createActivity = (activity) => {
+        return {name: activity, creationDate: Date()}
+      }
+
     handleChange = (event) => {
         this.setState({
             text: event.target.value,
@@ -16,7 +20,7 @@ class Form extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.handleSubmitForm(this.state.text);
+        this.props.handleSubmitForm(this.createActivity(this.state.text));
     
         this.setState({
           text: "",
