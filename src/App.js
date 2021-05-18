@@ -12,10 +12,10 @@ class App extends Component {
     }
   }
 
-  addActivity = (activity) => {
+  addActivity = (list, activity) => {
     //if (!this.state.activityList.includes(activity)) {
       this.setState({
-        activityList: this.state.activityList.concat([activity]),
+        [list]: this.state[list].concat([activity]),
       });
    // }
   }
@@ -42,13 +42,13 @@ class App extends Component {
       this.removeActivity("activityList", index);
     }
     else {
+      this.addActivity("activityList", this.state.completedActivities[index]);
       this.setState({
         completedActivities: this.state.completedActivities.filter((activity, i) => {
             return activity.name !== event.target.name;
           }
         )
       })
-      this.addActivity(event.target.name);
     }
   }
 

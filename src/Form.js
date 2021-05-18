@@ -20,7 +20,7 @@ class Form extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.handleSubmitForm(this.createActivity(this.state.text));
+        this.props.handleSubmitForm("activityList", this.createActivity(this.state.text));
     
         this.setState({
           text: "",
