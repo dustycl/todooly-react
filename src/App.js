@@ -25,6 +25,10 @@ class App extends Component {
   }
 
   removeActivity = (index) => {
+    /* TODO
+      Make remove activity work with both checked and unchecked activities
+      */
+     
     this.setState({
       activityList: this.state.activityList.filter((activity, i) => {
         return i !== index;
