@@ -26,7 +26,7 @@ class App extends Component {
       */
 
     this.setState({
-      list: list.filter((activity, i) => {
+      [list]: this.state[list].filter((activity, i) => {
         return i !== index;
       })
     });
@@ -39,7 +39,7 @@ class App extends Component {
           this.state.activityList[index]
         )
       });
-      this.removeActivity(this.state.activityList, index);
+      this.removeActivity("activityList", index);
     }
     else {
       this.setState({
