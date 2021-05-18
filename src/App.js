@@ -44,7 +44,7 @@ class App extends Component {
     else {
       this.setState({
         completedActivities: this.state.completedActivities.filter((activity, i) => {
-            return activity !== event.target.name;
+            return activity.name !== event.target.name;
           }
         )
       })
