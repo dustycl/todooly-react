@@ -45,7 +45,7 @@ class App extends Component {
       this.addActivity("activityList", this.state.completedActivities[index]);
       this.setState({
         completedActivities: this.state.completedActivities.filter((activity, i) => {
-            return activity.name !== event.target.name;
+            return i !== index;
           }
         )
       })
