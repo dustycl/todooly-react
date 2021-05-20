@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/todooly-react/static/css/main.d2f39596.chunk.css",
+    "main.js": "/todooly-react/static/js/main.82707856.chunk.js",
+    "main.js.map": "/todooly-react/static/js/main.82707856.chunk.js.map",
+    "runtime-main.js": "/todooly-react/static/js/runtime-main.35417780.js",
+    "runtime-main.js.map": "/todooly-react/static/js/runtime-main.35417780.js.map",
+    "static/js/2.e40c9088.chunk.js": "/todooly-react/static/js/2.e40c9088.chunk.js",
+    "static/js/2.e40c9088.chunk.js.map": "/todooly-react/static/js/2.e40c9088.chunk.js.map",
+    "static/js/3.96b1f886.chunk.js": "/todooly-react/static/js/3.96b1f886.chunk.js",
+    "static/js/3.96b1f886.chunk.js.map": "/todooly-react/static/js/3.96b1f886.chunk.js.map",
+    "index.html": "/todooly-react/index.html",
+    "static/css/main.d2f39596.chunk.css.map": "/todooly-react/static/css/main.d2f39596.chunk.css.map",
+    "static/js/2.e40c9088.chunk.js.LICENSE.txt": "/todooly-react/static/js/2.e40c9088.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.35417780.js",
+    "static/js/2.e40c9088.chunk.js",
+    "static/css/main.d2f39596.chunk.css",
+    "static/js/main.82707856.chunk.js"
+  ]
+}
