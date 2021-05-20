@@ -23,7 +23,7 @@ const Activity =(props) => {
 const Activities = (props) => {
     const activities = props.activityList.map((item, index) => {
         return (
-            <li key={item["name"]}>
+            <li key={item["name"] + "-" + item["creationDate"]}>
                 <Activity
                  id={index}
                  item={item["name"]}
@@ -43,7 +43,7 @@ const Activities = (props) => {
   const CompletedActivities = (props) => {
       const activities = props.completedActivities.map((item, index) => {
           return (
-              <li key={item["name"]}>
+              <li key={item["name"] + "-" + item["creationDate"]}>
                   <Activity
                     id={index}
                     item={item["name"]}
