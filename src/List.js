@@ -10,7 +10,14 @@ const Activity =(props) => {
              name={props.item}
              onChange={(event)=>props.completeActivity(props.id, event)}
              checked={props.checked} />
-            <div>{props.item}</div>
+            <div>
+                <div>{props.item}</div>
+                <div>
+                    <a href="" className="tag-button">chores</a>
+                    <a href="" className="tag-button">home</a>
+                </div>
+             </div>
+            
             <div>
                 <button
                  className="muted-button activity-button-delete"
