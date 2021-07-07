@@ -11,24 +11,25 @@ class App extends Component {
       completedActivities: [],
     }
 
+    this.createActivity = this.createActivity.bind(this);
     this.addActivity = this.addActivity.bind(this);
     this.removeActivity = this.removeActivity.bind(this);
     this.completeActivity = this.completeActivity.bind(this);
   }
 
+  createActivity = (activity) => {
+    return {name: activity, creationDate: Date()}
+  }
+
   addActivity = (list, activity) => {
-    //if (!this.state.activityList.includes(activity)) {
+    if (!this.state[list].includes(activity)) {
       this.setState({
         [list]: this.state[list].concat([activity]),
       });
-   // }
+    }
   }
 
   removeActivity = (list, index) => {
-    /* TODO
-      Make remove activity work with both checked and unchecked activities
-      */
-
     this.setState({
       [list]: this.state[list].filter((activity, i) => {
         return i !== index;
@@ -60,7 +61,10 @@ class App extends Component {
     return (
       <div className="small-container">
         <h1>Todooly</h1>
-        <Form handleSubmitForm={this.addActivity} />
+        <Form
+         addActivity={this.addActivity}
+         createActivity={this.createActivity}
+        />
         <List
          activityList={this.state.activityList}
          removeActivity={this.removeActivity} 

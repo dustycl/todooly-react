@@ -7,14 +7,9 @@ class Form extends Component {
             text: '',
         }
 
-        this.createActivity = this.createActivity.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
-    createActivity = (activity) => {
-        return {name: activity, creationDate: Date()}
-      }
 
     handleChange = (event) => {
         this.setState({
@@ -24,7 +19,7 @@ class Form extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.handleSubmitForm("activityList", this.createActivity(this.state.text));
+        this.props.addActivity("activityList", this.props.createActivity(this.state.text));
     
         this.setState({
           text: "",
