@@ -10,6 +10,10 @@ class App extends Component {
       activityList: [],
       completedActivities: [],
     }
+
+    this.addActivity = this.addActivity.bind(this);
+    this.removeActivity = this.removeActivity.bind(this);
+    this.completeActivity = this.completeActivity.bind(this);
   }
 
   addActivity = (list, activity) => {
