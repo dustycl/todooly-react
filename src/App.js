@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import List from './List.js'
 import Form from './Form.js'
+import Sidenav from './Sidenav.js'
 
 class App extends Component {
   constructor(props) {
@@ -18,7 +19,10 @@ class App extends Component {
   }
 
   createActivity = (activity) => {
-    return {name: activity, creationDate: Date()}
+    return ({name: activity,
+            creationDate: Date(),
+            tags: ["+ add"],
+          });
   }
 
   addActivity = (list, activity) => {
@@ -35,6 +39,13 @@ class App extends Component {
         return i !== index;
       })
     });
+  }
+
+  filterList = (event) => {
+    const filteredList = this.state.activityList.filter((item) => {
+      return item === event.target.key;
+    });
+    return filteredList;
   }
 
   completeActivity = (index, event) => {
@@ -57,19 +68,29 @@ class App extends Component {
     }
   }
 
+  addTag
+
   render() {
     return (
-      <div className="small-container">
-        <h1>Todooly</h1>
-        <Form
-         addActivity={this.addActivity}
-         createActivity={this.createActivity}
-        />
-        <List
-         activityList={this.state.activityList}
-         removeActivity={this.removeActivity} 
-         completeActivity={this.completeActivity}
-         completedActivities={this.state.completedActivities} />
+      <div className="medium-container">
+        <div className="flex-row">
+          <div className="flex-large one-fourth">
+            <Sidenav />
+          </div>
+          <div className="flex-large three-fourths">
+          <h1>Todooly</h1>
+            <Form
+             addActivity={this.addActivity}
+             createActivity={this.createActivity}
+            />
+            <List
+             activityList={this.state.activityList}
+             removeActivity={this.removeActivity} 
+             completeActivity={this.completeActivity}
+             completedActivities={this.state.completedActivities}
+            />
+          </div>
+        </div>
       </div>
     )
   }

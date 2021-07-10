@@ -1,21 +1,28 @@
 import React from 'react'
 
 
+const Tags = (props) => {
+    const tags = props.tagList.map((item) => {
+        return (
+            <button className="tag-button" key={item} onClick={}>{item}</button>
+        )
+    })
 
+    return (
+        <div className="tag-list">{tags}</div>
+    )
+}
 const Activity =(props) => {
     return (
         <div className="activity">
             <input
              type="checkbox"
-             name={props.item}
+             name={props.item["name"]}
              onChange={(event)=>props.completeActivity(props.id, event)}
              checked={props.checked} />
             <div>
-                <div>{props.item}</div>
-                <div>
-                    <a href="" className="tag-button">chores</a>
-                    <a href="" className="tag-button">home</a>
-                </div>
+                <div>{props.item.name}</div>
+                <Tags tagList={props.item.tags} />
              </div>
             
             <div>
@@ -33,7 +40,7 @@ const Activities = (props) => {
             <li key={item["name"] + "-" + item["creationDate"]}>
                 <Activity
                  id={index}
-                 item={item["name"]}
+                 item={item}
                  removeActivity={props.removeActivity}
                  completeActivity={props.completeActivity}
                  list="activityList"
@@ -53,7 +60,7 @@ const Activities = (props) => {
               <li key={item["name"] + "-" + item["creationDate"]}>
                   <Activity
                     id={index}
-                    item={item["name"]}
+                    item={item}
                     removeActivity={props.removeActivity}
                     completeActivity={props.completeActivity}
                     list="completedActivities"
