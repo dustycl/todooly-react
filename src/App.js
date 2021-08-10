@@ -10,18 +10,21 @@ class App extends Component {
     this.state = {
       activityList: [],
       completedActivities: [],
+      tagName: "",
     }
 
     this.createActivity = this.createActivity.bind(this);
     this.addActivity = this.addActivity.bind(this);
     this.removeActivity = this.removeActivity.bind(this);
     this.completeActivity = this.completeActivity.bind(this);
+    this.handleTagChange = this.handleTagChange.bind(this);
+    this.addTag = this.addTag.bind(this);
   }
 
   createActivity = (activity) => {
     return ({name: activity,
             creationDate: Date(),
-            tags: ["+ add"],
+            tags: [],
           });
   }
 
@@ -67,8 +70,6 @@ class App extends Component {
       })
     }
   }
-
-  addTag
 
   render() {
     return (

@@ -1,17 +1,5 @@
 import React from 'react'
 
-
-const Tags = (props) => {
-    const tags = props.tagList.map((item) => {
-        return (
-            <button className="tag-button" key={item} onClick={}>{item}</button>
-        )
-    })
-
-    return (
-        <div className="tag-list">{tags}</div>
-    )
-}
 const Activity =(props) => {
     return (
         <div className="activity">
@@ -19,16 +7,14 @@ const Activity =(props) => {
              type="checkbox"
              name={props.item["name"]}
              onChange={(event)=>props.completeActivity(props.id, event)}
-             checked={props.checked} />
-            <div>
-                <div>{props.item.name}</div>
-                <Tags tagList={props.item.tags} />
-             </div>
-            
+             checked={props.checked}
+            />
             <div>
                 <button
                  className="muted-button activity-button-delete"
-                 onClick={()=>props.removeActivity(props.list, props.id)}>Delete</button>
+                 onClick={()=>props.removeActivity(props.list, props.id)}>
+                    Delete
+                 </button>
             </div>
         </div>
     )
@@ -75,19 +61,20 @@ const Activities = (props) => {
   }
 
 const List = (props) => {
-    const {activityList, removeActivity, completeActivity, completedActivities} = props;
+    const {activityList, removeActivity, completeActivity, completedActivities, handleChange, addTag} = props;
 
     return (
         <div>
             <Activities
-            activityList={activityList}
-            removeActivity={removeActivity}
-            completeActivity={completeActivity} />
+             activityList={activityList}
+             removeActivity={removeActivity}
+             completeActivity={completeActivity}
+            />
             <CompletedActivities
-            activityList={activityList}
-            removeActivity={removeActivity}
-            completeActivity={completeActivity}
-            completedActivities={completedActivities} />
+             activityList={activityList}
+             removeActivity={removeActivity}
+             completeActivity={completeActivity}
+             completedActivities={completedActivities} />
          </div>
     )
 }
