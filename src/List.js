@@ -10,6 +10,9 @@ const Activity =(props) => {
              checked={props.checked}
             />
             <div>
+                {props.item.name}
+            </div>
+            <div>
                 <button
                  className="muted-button activity-button-delete"
                  onClick={()=>props.removeActivity(props.list, props.id)}>
@@ -61,7 +64,7 @@ const Activities = (props) => {
   }
 
 const List = (props) => {
-    const {activityList, removeActivity, completeActivity, completedActivities, handleChange, addTag} = props;
+    const {activityList, removeActivity, completeActivity, completedActivities} = props;
 
     return (
         <div>
