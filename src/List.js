@@ -1,27 +1,5 @@
 import React from 'react'
-
-const Activity =(props) => {
-    return (
-        <div className="activity">
-            <input
-             type="checkbox"
-             name={props.item["name"]}
-             onChange={(event)=>props.completeActivity(props.id, event)}
-             checked={props.checked}
-            />
-            <div>
-                {props.item.name}
-            </div>
-            <div>
-                <button
-                 className="muted-button activity-button-delete"
-                 onClick={()=>props.removeActivity(props.list, props.id)}>
-                    Delete
-                 </button>
-            </div>
-        </div>
-    )
-}
+import Activity from './Activity.js'
 
 const Activities = (props) => {
     const activities = props.activityList.map((item, index) => {
@@ -32,6 +10,7 @@ const Activities = (props) => {
                  item={item}
                  removeActivity={props.removeActivity}
                  completeActivity={props.completeActivity}
+                 onSelectClick={props.onSelectClick}
                  list="activityList"
                  checked="" />
             </li>
@@ -64,7 +43,7 @@ const Activities = (props) => {
   }
 
 const List = (props) => {
-    const {activityList, removeActivity, completeActivity, completedActivities} = props;
+    const {activityList, removeActivity, completeActivity, completedActivities, onSelectClick} = props;
 
     return (
         <div>
@@ -72,6 +51,7 @@ const List = (props) => {
              activityList={activityList}
              removeActivity={removeActivity}
              completeActivity={completeActivity}
+             onSelectClick={onSelectClick}
             />
             <CompletedActivities
              activityList={activityList}
