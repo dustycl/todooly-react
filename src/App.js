@@ -11,7 +11,9 @@ class App extends Component {
     this.state = {
       activityList: [],
       completedActivities: [],
-      selectedActivity: {},
+      filteredList: [],
+      filter: '',
+      selectedActivity: [{}, 0],
       activitySelected: false,
     }
 
@@ -19,20 +21,25 @@ class App extends Component {
     this.addActivity = this.addActivity.bind(this);
     this.removeActivity = this.removeActivity.bind(this);
     this.completeActivity = this.completeActivity.bind(this);
+    this.updateActivity = this.updateActivity.bind(this);
     this.onSelectClick = this.onSelectClick.bind(this);
+    this.setActivitySelected = this.setActivitySelected.bind(this);
+    this.filterList = this.filterList.bind(this);
   }
 
   createActivity = (activity) => {
-    return ({name: activity,
+    return ({activityName: activity,
             creationDate: Date(),
             tags: [],
+            date: "",
+            time: "",
           });
   }
 
   addActivity = (list, activity) => {
     if (!this.state[list].includes(activity)) {
       this.setState({
-        [list]: this.state[list].concat([activity]),
+        [list]: [...this.state[list], activity],
       });
     }
   }
@@ -40,16 +47,15 @@ class App extends Component {
   removeActivity = (list, index) => {
     this.setState({
       [list]: this.state[list].filter((activity, i) => {
-        return i !== index;
+        return i !== index
       })
     });
   }
 
-  filterList = (event) => {
-    const filteredList = this.state.activityList.filter((item) => {
-      return item === event.target.key;
-    });
-    return filteredList;
+  filterList = (list) => {
+    return (list.filter((item) => {
+      return item.tags.includes(this.state.filter);
+    }));
   }
 
   completeActivity = (index, event) => {
@@ -72,24 +78,53 @@ class App extends Component {
     }
   }
 
+  updateActivity = (activity, index) => {
+    let list = [...this.state.activityList];
+    list[index] = activity;
+
+    this.setState({
+      activityList: [...list],
+      selectedActivity: [{}, 0],
+      activitySelected: false
+    });
+  }
+
   onSelectClick = (event) => {
-    const activity = this.state.activityList.filter((activity) => {
-      return activity.creationDate === event.target.id;
+    let activityIndex = 0;
+
+    const activity = this.state.activityList.filter((activity, index) => {
+      if (activity.creationDate === event.target.id) {
+        activityIndex = index;
+        return true;
+      }
+      else {
+        return false;
+      }
     })
     this.setState({
-      selectedActivity: activity[0],
+      selectedActivity: [activity[0], activityIndex],
       activitySelected: true,
+    });
+  }
+
+  setActivitySelected = () => {
+    this.setState({activitySelected: !this.state.activitySelected})
+  }
+
+  setFilter = (event) => {
+    this.setState({
+      filter: event.target.dataset.tag
     });
   }
 
   render() {
     return (
-      <div className="medium-container">
+      <div className="container">
         <div className="flex-row">
-          <div className="flex-large one-fourth">
-            <Sidenav />
+          <div className="flex-small one-fourth">
+            <Sidenav setFilter={this.setFilter} />
           </div>
-          <div className="flex-large three-fourths">
+          <div className="flex-small three-fourths">
             <h1>Todooly</h1>
             {this.state.activitySelected === false && <div>
                 <Form
@@ -102,11 +137,17 @@ class App extends Component {
                  completeActivity={this.completeActivity}
                  completedActivities={this.state.completedActivities}
                  onSelectClick={this.onSelectClick}
+                 filter={this.state.filter}
+                 filterList={this.filterList}
                 />
               </div>}
 
               {this.state.activitySelected === true && <div>
-                  <ActivityOptions activity={this.state.selectedActivity} />
+                  <ActivityOptions
+                   activity={this.state.selectedActivity}
+                   updateActivity={this.updateActivity}
+                   setActivitySelected={this.setActivitySelected}
+                  />
                 </div>}
           </div>
         </div>

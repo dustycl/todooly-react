@@ -2,9 +2,9 @@ import React from 'react'
 import Activity from './Activity.js'
 
 const Activities = (props) => {
-    const activities = props.activityList.map((item, index) => {
+    const activities = props.list.map((item, index) => {
         return (
-            <li key={item["name"] + "-" + item["creationDate"]}>
+            <li key={index}>
                 <Activity
                  id={index}
                  item={item}
@@ -45,10 +45,19 @@ const Activities = (props) => {
 const List = (props) => {
     const {activityList, removeActivity, completeActivity, completedActivities, onSelectClick} = props;
 
+    let list = [];
+    if (props.filter) {
+        list = props.filterList(props.activityList);
+    }
+    else {
+        list = props.activityList;
+    }
+    
+
     return (
         <div>
             <Activities
-             activityList={activityList}
+             list={list}
              removeActivity={removeActivity}
              completeActivity={completeActivity}
              onSelectClick={onSelectClick}

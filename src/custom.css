@@ -7,8 +7,8 @@ body {
     height: 100%;
 }
 
-div {
-    height: 100%;
+form {
+    margin-bottom: 0;
 }
 
 .activity-list {
@@ -42,8 +42,31 @@ div {
     margin: 0;
 }
 
-.tag-button {
-    font-size: .8rem;
+.tag-list {
+    display: flex;
+    list-style-type: none;
+    margin-bottom: 8px;
+    padding: 0;
+}
+
+.tag-list li {
+    margin-right: 10px;
+}
+
+.tag {
+    font-size: 1rem;
+    background: transparent;
+    color: #8BA6CB;
+    padding: .2rem .4rem;
+    border: 1px solid #8BA6CB;
+    border-radius: 1rem;
+    margin-right: .2rem;
+    line-height: 1rem;
+}
+
+.tag-input {
+    font-size: 1rem;
+    line-height: 1rem;
     background: transparent;
     color: #8BA6CB;
     padding: .2rem .4rem;
@@ -51,6 +74,29 @@ div {
     border-radius: 1rem;
     margin-right: .2rem;
     cursor: pointer;
+}
+
+.remove-tag-btn {
+    font-size: .8rem;
+    line-height: 1rem;
+    padding: .1rem .3rem;
+    border-radius: 1rem;
+    margin: 0;
+}
+
+.remove-tag-btn:hover {
+    background-color: #0366EE;
+    color: #ffffff;
+}
+
+.add-tag-button {
+    height: 1.4rem;
+    width: 1.4rem;
+    font-size: .8rem;
+    line-height: 1rem;
+    padding: .2rem .4rem;
+    border-radius: 1.2rem;
+    margin-right: .2rem;
 }
 
 .sidenav {
@@ -67,6 +113,7 @@ div {
 
 .sidenav ul {
     list-style: none;
+    padding: 0;
 }
 
 .sidenav li {

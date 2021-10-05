@@ -1,17 +1,17 @@
 import React from 'react'
 
-const Activity =(props) => {
+const Activity = (props) => {
     return (
         // TODO: Make onClick work for completedActivities
-        <div className="activity" id={props.item["creationDate"]}  onClick={(event)=>props.onSelectClick(event)}>
+        <div className="activity">
             <input
              type="checkbox"
              name={props.item["name"]}
              onChange={(event)=>props.completeActivity(props.id, event)}
              checked={props.checked}
             />
-            <div>
-                {props.item.name}
+            <div id={props.item["creationDate"]}  onClick={(event)=>props.onSelectClick(event)} >
+                {props.item.activityName}
             </div>
             <div>
                 <button

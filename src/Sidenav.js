@@ -1,17 +1,18 @@
 import React from 'react'
 
-const Sidenav = () => {
+const Sidenav = (props) => {
     return (
         <div className="sidenav">
             <h2>Dustin</h2>
             <h3>Tags</h3>
             <ul>
-                <li><a href="">Home</a></li>
-                <li><a href="">Chores</a></li>
-                <li><a href="">School</a></li>
+                <li><button key="all" data-tag="" onClick={(event)=>props.setFilter(event)}>All</button></li>
+                <li><button key="home" data-tag="home" onClick={(event)=>props.setFilter(event)}>Home</button></li>
+                <li><button key="chores" data-tag="chores" onClick={(event)=>props.setFilter(event)}>Chores</button></li>
+                <li><button key="school" data-tag="school" onClick={(event)=>props.setFilter(event)}>School</button></li>
             </ul>
         </div>
     );
 }
 
-export default Sidenav
+export default Sidenav;
