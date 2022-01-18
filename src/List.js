@@ -31,6 +31,7 @@ const Activities = (props) => {
                     item={item}
                     removeActivity={props.removeActivity}
                     completeActivity={props.completeActivity}
+                    onSelectClick={props.onSelectClick}
                     list="completedActivities"
                     checked="checked" />
               </li>
@@ -46,11 +47,11 @@ const List = (props) => {
     const {activityList, removeActivity, completeActivity, completedActivities, onSelectClick} = props;
 
     let list = [];
-    if (props.filter) {
-        list = props.filterList(props.activityList);
+    if (props.filter !== 'all') {
+        list = props.filterList(activityList);
     }
     else {
-        list = props.activityList;
+        list = activityList;
     }
     
 
@@ -62,11 +63,14 @@ const List = (props) => {
              completeActivity={completeActivity}
              onSelectClick={onSelectClick}
             />
+            {/*
             <CompletedActivities
              activityList={activityList}
              removeActivity={removeActivity}
              completeActivity={completeActivity}
-             completedActivities={completedActivities} />
+             completedActivities={completedActivities}
+             onSelectClick={onSelectClick} />
+            */}
          </div>
     )
 }

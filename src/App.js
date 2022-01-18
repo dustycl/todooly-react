@@ -12,9 +12,10 @@ class App extends Component {
       activityList: [],
       completedActivities: [],
       filteredList: [],
-      filter: '',
+      filter: 'all',
       selectedActivity: [{}, 0],
       activitySelected: false,
+      tagList: ['all']
     }
 
     this.createActivity = this.createActivity.bind(this);
@@ -117,12 +118,20 @@ class App extends Component {
     });
   }
 
+  addTag = (tag) => {
+    if (!this.state.tagList.includes(tag)) {
+      this.setState({
+        tagList: [...this.state.tagList, tag]
+      });
+    }
+  }
+
   render() {
     return (
       <div className="container">
         <div className="flex-row">
           <div className="flex-small one-fourth">
-            <Sidenav setFilter={this.setFilter} />
+            <Sidenav setFilter={this.setFilter} tagList={this.state.tagList} />
           </div>
           <div className="flex-small three-fourths">
             <h1>Todooly</h1>
@@ -147,6 +156,7 @@ class App extends Component {
                    activity={this.state.selectedActivity}
                    updateActivity={this.updateActivity}
                    setActivitySelected={this.setActivitySelected}
+                   addTag={this.addTag}
                   />
                 </div>}
           </div>

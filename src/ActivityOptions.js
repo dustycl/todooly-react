@@ -37,11 +37,12 @@ class ActivityOptions extends React.Component {
 
     onTagFormSubmit = (event, newTag) => {
         event.preventDefault();
-        console.log("tag submitted");
 
         this.setState({
             tags: [...this.state.tags, newTag],
         });
+
+        this.props.addTag(newTag);
     }
 
     handleRemoveTag = (event) => {
