@@ -23,7 +23,7 @@ const TagFilterList = (props) => {
 }
 
 const Sidenav = (props) => {
-    const [hidden, setHidden] = useState(true);
+    const [hidden, setHidden] = useState(false);
     return (
         <div className="sidenav">
             <div>
