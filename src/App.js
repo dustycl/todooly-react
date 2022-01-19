@@ -130,10 +130,10 @@ class App extends Component {
     return (
       <div className="container">
         <div className="flex-row">
-          <div className="flex-small one-fourth">
+          <div className="flex-small one-third">
             <Sidenav setFilter={this.setFilter} tagList={this.state.tagList} />
           </div>
-          <div className="flex-small three-fourths">
+          <div className="flex-small">
             <h1>Todooly</h1>
             {this.state.activitySelected === false && <div>
                 <Form

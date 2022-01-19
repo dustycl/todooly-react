@@ -100,20 +100,47 @@ form {
 }
 
 .sidenav {
+    //display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
     height: 100%;
+    width: 100%;
     background: #0366EE;
     color: #FFFFFF;
     padding: 1rem;
     border-radius: 6px;
 }
 
-.sidenav h2, h3 {
-    color: #ffffff;
+.sidenav-drawer {
+    display: block;
+  }
+
+.nav-item {
+    list-style: none;
+    padding: .2rem;
+    margin: 0;
 }
 
-.sidenav ul {
-    list-style: none;
-    padding: 0;
+.nav-button {
+    display: none;
+    background: none;
+    color: #ffffff;
+    border: #ffffff solid 1px;
+    border-radius: 4px;
+    font-size: 1rem;
+    padding: .4rem .8rem;
+    margin: 0;
+}
+
+.nav-button:hover {
+    background: #ffffff;
+    color: #0366EE;
+}
+
+.sidenav h2, h3 {
+    color: #ffffff;
+    margin: 0;
 }
 
 .sidenav li {
@@ -122,4 +149,26 @@ form {
 
 .sidenav a {
     color: #ffffff;
+}
+
+@media screen and (max-width: 600px) {
+    .sidenav {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        margin: 0;
+    }
+    
+    .nav-button {
+        display: inline;
+    }
+    
+    .sidenav-drawer {
+        display: none
+    }
+    
+    .sidenav-drawer.visible {
+        display: block;
+    }
+    
 }
