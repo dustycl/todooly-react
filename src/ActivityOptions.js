@@ -55,19 +55,24 @@ class ActivityOptions extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="bg-slate-200 rounded-lg p-12">
                 <Tags
                     handleSubmit={this.onTagFormSubmit}
                     tags={this.state.tags}
                     removeTag={this.handleRemoveTag}
                 />
 
-                <form id="optionsForm" onSubmit={event => this.handleSubmit(event)}>
+                <form
+                  id="optionsForm"
+                  className="flex flex-col"
+                  onSubmit={event => this.handleSubmit(event)}
+                >
                     <label htmlFor="activity-name" form="optionsForm">Activity Name</label>
                     <input
                         type="text"
                         name="activityName"
                         id="activity-name"
+                        className="mb-2 py-1 px-2 bg-transparent border border-slate-400 rounded"
                         form="optionsForm"
                         value={this.state.activityName}
                         onChange={(event) => this.handleChange(event)}
@@ -77,6 +82,7 @@ class ActivityOptions extends React.Component {
                     <input
                         type="date"
                         id="date"
+                        className="mb-2 py-1 px-2 bg-transparent border border-slate-400 rounded"
                         name="date"
                         value={this.state.date}
                         form="optionsForm"
@@ -85,15 +91,16 @@ class ActivityOptions extends React.Component {
 
                     <label htmlFor="time" form="optionsForm">Time</label>
                     <input
-                    type="time"
-                    id="time"
-                    name="time"
-                    value={this.state.time}
-                    form="optionsForm"
-                    onChange={(event) => this.handleChange(event)}
+                        type="time"
+                        id="time"
+                        className="mb-2 py-1 px-2 bg-transparent border border-slate-400 rounded"
+                        name="time"
+                        value={this.state.time}
+                        form="optionsForm"
+                        onChange={(event) => this.handleChange(event)}
                     />
 
-                    <input type="submit" value="save" form="optionsForm" />
+                    <input className="bg-blue-600 rounded text-white py-2 px-4" type="submit" value="save" form="optionsForm" />
                 </form>
             </div>
         )

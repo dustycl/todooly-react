@@ -128,13 +128,16 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="flex-row">
-          <div className="flex-small one-third">
-            <Sidenav setFilter={this.setFilter} tagList={this.state.tagList} />
+      <div className="h-screen p-2 bg-slate-600">
+        <div className="flex w-full h-full">
+          <div className="flex-none w-64 h-full bg-slate-700 p-6 mr-4 rounded-xl text-slate-50">
+            <Sidenav
+              filter={this.state.filter}
+              setFilter={this.setFilter}
+              tagList={this.state.tagList}
+            />
           </div>
-          <div className="flex-small">
-            <h1>Todooly</h1>
+          <div className="flex-none w-128">
             {this.state.activitySelected === false && <div>
                 <Form
                  addActivity={this.addActivity}

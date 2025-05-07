@@ -25,16 +25,16 @@ class Form extends Component {
           text: "",
         });
       }
-
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} className="mt-1 mb-8">
                 <input
                  type="text"
                  value={this.state.text}
+                 className="border border-slate-400 bg-slate-200 rounded-md mr-2 px-2 text-sm py-2 focus:outline-none focus:border-slate-600"
                  onChange={this.handleChange} />
                 <button
-                 className="full-button"
+                 className="px-4 py-2 rounded-md border border-slate-800 bg-slate-800 text-slate-50 text-sm"
                  type="button"
                  onClick={this.handleSubmit}
                 >Add activity</button>
