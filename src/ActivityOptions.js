@@ -55,7 +55,7 @@ class ActivityOptions extends React.Component {
 
     render() {
         return (
-            <div className="bg-slate-200 rounded-lg p-12">
+            <div className="bg-slate-500 rounded-lg p-12">
                 <Tags
                     handleSubmit={this.onTagFormSubmit}
                     tags={this.state.tags}

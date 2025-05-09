@@ -18,6 +18,7 @@ class App extends Component {
       tagList: ['all']
     }
 
+
     this.createActivity = this.createActivity.bind(this);
     this.addActivity = this.addActivity.bind(this);
     this.removeActivity = this.removeActivity.bind(this);
@@ -28,6 +29,7 @@ class App extends Component {
     this.filterList = this.filterList.bind(this);
   }
 
+  
   createActivity = (activity) => {
     return ({activityName: activity,
             creationDate: Date(),
@@ -42,6 +44,8 @@ class App extends Component {
       this.setState({
         [list]: [...this.state[list], activity],
       });
+
+      localStorage.setItem('activityList', JSON.stringify(this.state.activityList))
     }
   }
 
