@@ -1,71 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Tags from './Tags';
 
-class ActivityOptions extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            activityName: this.props.activity[0].activityName,
-            creationDate: this.props.activity[0].creationDate,
-            tags: [...this.props.activity[0].tags],
-            date: this.props.activity[0].date,
-            time: this.props.activity[0].time,
-            index: this.props.activity[1],
-            newTag: ''
-        }
+export default function ActivityOptions({ activity, updateActivity, addTag }) {
 
-        this.handleChange = this.handleChange.bind(this);
+    const [activityName, setActivityName] = useState(activity[0].activityName)
+    const [creationDate, setCreationDate] = useState(activity[0].creationDate)
+    const [tags, setTags] = useState(activity[0].tags)
+    const [date, setDate] = useState(activity[0].date)
+    const [time, setTime] = useState(activity[0].time)
+    const [index, setIndex] = useState(activity[1])
+    const [newTag, setNewTag] = useState('')
+
+    const stateHandlers = {
+        'activityName': setActivityName,
+        'creationDate': setCreationDate,
+        'tags': setTags,
+        'date': setDate,
+        'time': setTime,
     }
 
-    handleChange = (event) => {
-        this.setState({
-            [event.target.id]: event.target.value,
-        })
+    
+    const handleChange = (event) => {
+        stateHandlers[event.target.id](event.target.value)
     }
 
-    handleSubmit = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
         console.log("options saved");
-        this.props.updateActivity({
-            activityName: this.state.activityName,
-            creationDate: this.state.creationDate,
-            tags: this.state.tags,
-            date: this.state.date,
-            time: this.state.time
-        }, this.state.index);
+        updateActivity({
+            activityName: activityName,
+            creationDate: creationDate,
+            tags: tags,
+            date: date,
+            time: time
+        }, index);
     }
 
-    onTagFormSubmit = (event, newTag) => {
+    const onTagFormSubmit = (event, newTag) => {
         event.preventDefault();
 
-        this.setState({
-            tags: [...this.state.tags, newTag],
-        });
+        setTags([...tags, newTag])
 
-        this.props.addTag(newTag);
+        addTag(newTag);
     }
 
-    handleRemoveTag = (event) => {
-        this.setState({
-            tags: this.state.tags.filter((tag) => {
-                return tag !== event.target.id;
-            })
-        });
+    const handleRemoveTag = (event) => {
+        setTags(tags.filter((tag) => {
+            return tag !== event.target.id;
+        }))
     }
 
-    render() {
         return (
             <div className="bg-slate-500 rounded-lg p-12">
                 <Tags
-                    handleSubmit={this.onTagFormSubmit}
-                    tags={this.state.tags}
-                    removeTag={this.handleRemoveTag}
+                    handleSubmit={onTagFormSubmit}
+                    tags={tags}
+                    removeTag={handleRemoveTag}
                 />
 
                 <form
                   id="optionsForm"
                   className="flex flex-col"
-                  onSubmit={event => this.handleSubmit(event)}
+                  onSubmit={event => handleSubmit(event)}
                 >
                     <label htmlFor="activity-name" form="optionsForm">Activity Name</label>
                     <input
@@ -74,8 +70,8 @@ class ActivityOptions extends React.Component {
                         id="activity-name"
                         className="mb-2 py-1 px-2 bg-transparent border border-slate-400 rounded"
                         form="optionsForm"
-                        value={this.state.activityName}
-                        onChange={(event) => this.handleChange(event)}
+                        value={activityName}
+                        onChange={(event) => handleChange(event)}
                     />
 
                     <label htmlFor="date" form="optionsForm">Date</label>
@@ -84,9 +80,9 @@ class ActivityOptions extends React.Component {
                         id="date"
                         className="mb-2 py-1 px-2 bg-transparent border border-slate-400 rounded"
                         name="date"
-                        value={this.state.date}
+                        value={date}
                         form="optionsForm"
-                        onChange={(event) => this.handleChange(event)}
+                        onChange={(event) => handleChange(event)}
                     />
 
                     <label htmlFor="time" form="optionsForm">Time</label>
@@ -95,16 +91,13 @@ class ActivityOptions extends React.Component {
                         id="time"
                         className="mb-2 py-1 px-2 bg-transparent border border-slate-400 rounded"
                         name="time"
-                        value={this.state.time}
+                        value={time}
                         form="optionsForm"
-                        onChange={(event) => this.handleChange(event)}
+                        onChange={(event) => handleChange(event)}
                     />
 
-                    <input className="bg-blue-600 rounded text-white py-2 px-4" type="submit" value="save" form="optionsForm" />
+                    <input className="bg-blue-600 rounded text-white py-2 px-4" type="submit" value="save" form="optionsForm" onClick={console.log('submit button clicked')} />
                 </form>
             </div>
         )
     }
-}
-
-export default ActivityOptions

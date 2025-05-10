@@ -1,36 +1,21 @@
-import React, {Component} from 'react'
+import React, {useState} from 'react'
 import List from './List.js'
 import Form from './Form.js'
 import Sidenav from './Sidenav.js'
 import ActivityOptions from './ActivityOptions.js'
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-  
-    this.state = {
-      activityList: [],
-      completedActivities: [],
-      filteredList: [],
-      filter: 'all',
-      selectedActivity: [{}, 0],
-      activitySelected: false,
-      tagList: ['all']
-    }
+export default function App()  {
 
-
-    this.createActivity = this.createActivity.bind(this);
-    this.addActivity = this.addActivity.bind(this);
-    this.removeActivity = this.removeActivity.bind(this);
-    this.completeActivity = this.completeActivity.bind(this);
-    this.updateActivity = this.updateActivity.bind(this);
-    this.onSelectClick = this.onSelectClick.bind(this);
-    this.setActivitySelected = this.setActivitySelected.bind(this);
-    this.filterList = this.filterList.bind(this);
-  }
+  const [activityList, setActivityList] = useState([])
+  const [completedActivities, setCompletedActivities] = useState([])
+  const [filteredList, setFilteredList] = useState([])
+  const [filter, setFilter] = useState('all')
+  const [selectedActivity, setSelectedActivity] = useState([{}, 0])
+  const [activitySelected, setActivitySelected] = useState(false)
+  const [tagList, setTagList] = useState(['all'])
 
   
-  createActivity = (activity) => {
+  const createActivity = (activity) => {
     return ({activityName: activity,
             creationDate: Date(),
             tags: [],
@@ -39,65 +24,61 @@ class App extends Component {
           });
   }
 
-  addActivity = (list, activity) => {
-    if (!this.state[list].includes(activity)) {
-      this.setState({
-        [list]: [...this.state[list], activity],
-      });
-
-      localStorage.setItem('activityList', JSON.stringify(this.state.activityList))
+  const addActivity = (list, activity) => {
+    if (!list.includes(activity)) {
+      setActivityList(
+        [...list, activity]
+      );
     }
   }
 
-  removeActivity = (list, index) => {
-    this.setState({
-      [list]: this.state[list].filter((activity, i) => {
+  const removeActivity = (list, index) => {
+    setActivityList(
+      list.filter((activity, i) => {
         return i !== index
       })
-    });
+    );
   }
 
-  filterList = (list) => {
+  const filterList = (list) => {
     return (list.filter((item) => {
-      return item.tags.includes(this.state.filter);
+      return item.tags.includes(filter);
     }));
   }
 
-  completeActivity = (index, event) => {
+  const completeActivity = (index, event) => {
     if (event.target.checked) {
-      this.setState({
-        completedActivities: this.state.completedActivities.concat(
-          this.state.activityList[index]
+      setCompletedActivities(
+        completedActivities.concat(
+          activityList[index]
         )
-      });
-      this.removeActivity("activityList", index);
+      );
+      removeActivity(activityList, index);
     }
     else {
-      this.addActivity("activityList", this.state.completedActivities[index]);
-      this.setState({
-        completedActivities: this.state.completedActivities.filter((activity, i) => {
+      addActivity(activityList, completedActivities[index]);
+      setCompletedActivities(
+        completedActivities.filter((activity, i) => {
             return i !== index;
           }
         )
-      })
+      )
     }
   }
 
-  updateActivity = (activity, index) => {
-    let list = [...this.state.activityList];
+  const updateActivity = (activity, index) => {
+    let list = [...activityList];
     list[index] = activity;
 
-    this.setState({
-      activityList: [...list],
-      selectedActivity: [{}, 0],
-      activitySelected: false
-    });
+    setActivityList([...list])
+    setSelectedActivity([{}, 0])
+    setActivitySelected(false)
   }
 
-  onSelectClick = (event) => {
+  const onSelectClick = (event) => {
     let activityIndex = 0;
 
-    const activity = this.state.activityList.filter((activity, index) => {
+    const activity = activityList.filter((activity, index) => {
       if (activity.creationDate === event.target.id) {
         activityIndex = index;
         return true;
@@ -106,64 +87,59 @@ class App extends Component {
         return false;
       }
     })
-    this.setState({
-      selectedActivity: [activity[0], activityIndex],
-      activitySelected: true,
-    });
+
+    setSelectedActivity([activity[0], activityIndex])
+    setActivitySelected(true)
   }
 
-  setActivitySelected = () => {
-    this.setState({activitySelected: !this.state.activitySelected})
+  const handleSelectActivity = () => {
+    setActivitySelected(!activitySelected)
   }
 
-  setFilter = (event) => {
-    this.setState({
-      filter: event.target.dataset.tag
-    });
+  const handleSetFilter = (event) => {
+      setFilter(event.target.dataset.tag)
   }
 
-  addTag = (tag) => {
-    if (!this.state.tagList.includes(tag)) {
-      this.setState({
-        tagList: [...this.state.tagList, tag]
-      });
+  const addTag = (tag) => {
+    if (!tagList.includes(tag)) {
+        setTagList([...tagList, tag])
     }
   }
 
-  render() {
     return (
       <div className="h-screen p-2 bg-slate-600">
         <div className="flex w-full h-full">
           <div className="flex-none w-64 h-full bg-slate-700 p-6 mr-4 rounded-xl text-slate-50">
             <Sidenav
-              filter={this.state.filter}
-              setFilter={this.setFilter}
-              tagList={this.state.tagList}
+              filter={filter}
+              setFilter={handleSetFilter}
+              tagList={tagList}
             />
           </div>
           <div className="flex-none w-128">
-            {this.state.activitySelected === false && <div>
+            {activitySelected === false && <div>
                 <Form
-                 addActivity={this.addActivity}
-                 createActivity={this.createActivity}
+                 addActivity={addActivity}
+                 createActivity={createActivity}
+                 activityList={activityList}
                 />
                 <List
-                 activityList={this.state.activityList}
-                 removeActivity={this.removeActivity} 
-                 completeActivity={this.completeActivity}
-                 completedActivities={this.state.completedActivities}
-                 onSelectClick={this.onSelectClick}
-                 filter={this.state.filter}
-                 filterList={this.filterList}
+                 activityList={activityList}
+                 removeActivity={removeActivity} 
+                 completeActivity={completeActivity}
+                 completedActivities={completedActivities}
+                 onSelectClick={onSelectClick}
+                 filter={filter}
+                 filterList={filterList}
                 />
               </div>}
 
-              {this.state.activitySelected === true && <div>
+              {activitySelected === true && <div>
                   <ActivityOptions
-                   activity={this.state.selectedActivity}
-                   updateActivity={this.updateActivity}
-                   setActivitySelected={this.setActivitySelected}
-                   addTag={this.addTag}
+                   activity={selectedActivity}
+                   updateActivity={updateActivity}
+                   setActivitySelected={setActivitySelected}
+                   addTag={addTag}
                   />
                 </div>}
           </div>
@@ -171,6 +147,3 @@ class App extends Component {
       </div>
     )
   }
-}
-
-export default App;
