@@ -16,7 +16,7 @@ export default function Form(props) {
       }
 
         return (
-            <form onSubmit={handleSubmit} className="mt-1 mb-8">
+            <form onSubmit={handleSubmit} className="mt-0.5 mb-8">
                 <input
                  type="text"
                  value={text}
